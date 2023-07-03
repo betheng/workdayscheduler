@@ -13,34 +13,24 @@ $(document).ready(function () {
     })
    
     function timeTracker() {
-// Checks current time block
-        var timeNow = moment().hour();
-
-// TODO comment from starter code: Add code to apply the past, present, or future class to each time
-// block by comparing the id to the current hour. HINTS: How can the id
-// attribute of each time-block be used to conditionally add or remove the
-// past, present, and future classes? How can Day.js be used to get the
-// current hour in 24-hour time?
-// THIS ISN't WORKING!!! DEBUG WHEN I CONTINUE LATER
+// Checks current time and converts it to military hour format
+        var currentHour = moment().format("HH");
+        console.log("Current Hour: ", currentHour);
+// Splits name of time-block id, creates array and selects second half to match military hour format
         $(".time-block").each(function () {
-            var blockTime = parseInt($(this).attr("id").split("hour")[1]);
-              if (blockTime < timeNow) {
-                  $(this).removeClass("future");
-                  $(this).removeClass("present");
-                  $(this).addClass("past");
-              }
-              else if (blockTime === timeNow) {
-                  $(this).removeClass("past");
-                  $(this).removeClass("future");
-                  $(this).addClass("present");
-              }
-              else {
-                  $(this).removeClass("present");
-                  $(this).removeClass("past");
-                  $(this).addClass("future");
-
-              }
-        })
+          var timeBlock = $(this).attr("id").split("-")[1];
+// Checks current hour against html time block and conditions appropriately
+          if (currentHour === timeBlock) {
+            $(this).addClass("present");
+          } else if (currentHour < timeBlock) {
+            $(this).removeClass("present");
+            $(this).addClass("future");
+          } else if (currentHour > timeBlock) {
+            $(this).removeClass("future");
+            $(this).addClass("past");
+          }
+          console.log("Check format: ", timeBlock)
+        });
     }
   // Retrieves and sets previously saved text to correct time block upon refresh or return to page
     $("#hour-9 .description").val(localStorage.getItem("hour-9"));
