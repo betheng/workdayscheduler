@@ -33,7 +33,7 @@ $(document).ready(function () {
         });
     }
   // Retrieves and sets previously saved text to correct time block upon refresh or return to page
-    $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+    $("#hour-09 .description").val(localStorage.getItem("hour-9"));
     $("#hour-10 .description").val(localStorage.getItem("hour-10"));
     $("#hour-11 .description").val(localStorage.getItem("hour-11"));
     $("#hour-12 .description").val(localStorage.getItem("hour-12"));
